@@ -7,9 +7,8 @@ function Gugudan() { // 바뀌는 부분을 state로
     second: Math.ceil(Math.random() * 9),
     value: '',
     result: '',
-    multiply: ''
   })
-  const {first, second, value, result, multiply} = state;
+  const { first, second, value, result } = state;
 
   // (핵심)키입력을 위해 set이용
   const onChange = (e) => {
@@ -28,8 +27,7 @@ function Gugudan() { // 바뀌는 부분을 state로
         first: Math.ceil(Math.random() * 9),
         second: Math.ceil(Math.random() * 9),
         value: '',
-        result: '정답',
-        multiply: first * second
+        result: '정답: '+ value,
       });
     } else {
       setState({
@@ -51,7 +49,7 @@ function Gugudan() { // 바뀌는 부분을 state로
         <button>입력!</button>
       </form>
       {/*<div>{`${multiply}은 ${result}`}</div>*/}
-      <div>{ result === '정답' ? `${multiply}은 ${result}` : result}</div>
+      <div>{ result }</div>
     </div>
   )
 }
