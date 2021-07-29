@@ -1,7 +1,8 @@
 import './App.css';
 import React from 'react';
-import Gugudan from "./Gugudan";
-import LikeBtn from "./Button";
+import Gugudan from './Gugudan';
+import LikeBtn from './Button';
+import Gugudan2 from './Gugudan2';
 
 function App() {
   // const [state, setState] = useState(false); // 바뀔 여지가 있는 부분이 state(상태)
@@ -11,8 +12,8 @@ function App() {
     // JSX: JS + XML
     <div>
       <Gugudan /> {/* 컴포넌트는 같지만 각각 다른 상태(state)를 가지고 있음 */}
-      <Gugudan />
-      <Gugudan />
+      <hr />
+      <Gugudan2 />
       <hr />
       <LikeBtn />
     </div>
