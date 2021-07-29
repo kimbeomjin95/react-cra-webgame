@@ -8,8 +8,11 @@ function App() {
   return (
     // <button onClick={() => setState(!state)}>{state ? '좋아요 클릭' : '좋아요 눌렀음'}</button> // 상태가 변경되면 화면이 저절로 바뀜
     // JSX: JS + XML
-    <Gugudan />
-
+    <div>
+      <Gugudan /> {/* 컴포넌트는 같지만 각각 다른 상태(state)를 가지고 있음 */}
+      <Gugudan />
+      <Gugudan />
+    </div>
   );
 }
 
