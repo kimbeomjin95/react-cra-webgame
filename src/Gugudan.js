@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 
 function Gugudan() { // 바뀌는 부분을 state로
 
+  const nameInput = useRef();
   const [state, setState] = useState({
     first: Math.ceil(Math.random() * 9),
     second: Math.ceil(Math.random() * 9),
@@ -32,7 +33,8 @@ function Gugudan() { // 바뀌는 부분을 state로
           value: '',
           result: '정답: ' + prevState.value, // this.state를 사용할 때는 함수형 업데이트 사용
         }
-      });
+      })
+      nameInput.current.focus(); // current는 해당 요소의 DOM을 가르킴
     } else {
       setState(prevState => { // prevState: 이전 상태값
         return {
@@ -42,6 +44,7 @@ function Gugudan() { // 바뀌는 부분을 state로
           result: '땡',
         }
       })
+      nameInput.current.focus();
       // setState({
       //   first: first, // input에 값 입력시 렌더링이 새롭게 되므로 값이 모두 초기화 됨
       //   second: second,
@@ -56,8 +59,11 @@ function Gugudan() { // 바뀌는 부분을 state로
       <div>{first}곱하기{second}?</div>
       {/*태그사이에 중괄호를 넣으면 JS 사용가능*/}
       <form onSubmit={onSubmit}>
-        <input type='number' value={value}
-               onChange={onChange}/> {/* 현재 input에 상태는 키입력이 안되므로 set을 통하여 키 입력이 가능하도록 변경 */}
+        <input type='number'
+               value={value}
+               onChange={onChange}
+               ref={nameInput}
+        /> {/* 현재 input에 상태는 키입력이 안되므로 set을 통하여 키 입력이 가능하도록 변경 */}
         <button>입력!</button>
       </form>
       {/*<div>{`${multiply}은 ${result}`}</div>*/}
