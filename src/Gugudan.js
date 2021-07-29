@@ -8,7 +8,7 @@ function Gugudan() { // 바뀌는 부분을 state로
     value: '',
     result: '',
   })
-  const { first, second, value, result } = state;
+  const {first, second, value, result} = state;
 
   // (핵심)키입력을 위해 set이용
   const onChange = (e) => {
@@ -20,22 +20,34 @@ function Gugudan() { // 바뀌는 부분을 state로
     })
   }
 
+  // 힘수형 업데이트 - 성능 최적화와 관련
+  // 원칙 - 이전 state 값으로 새로운 state를 만들 때는 return 함수를 생성해줘야 함
   const onSubmit = (e) => {
     e.preventDefault(); // 새로고침 방지
     if (parseInt(value) === first * second) {
-      setState({
-        first: Math.ceil(Math.random() * 9),
-        second: Math.ceil(Math.random() * 9),
-        value: '',
-        result: '정답: '+ value,
+      setState(prevState => {
+        return {
+          first: Math.ceil(Math.random() * 9),
+          second: Math.ceil(Math.random() * 9),
+          value: '',
+          result: '정답: ' + prevState.value, // this.state를 사용할 때는 함수형 업데이트 사용
+        }
       });
     } else {
-      setState({
-        first: first, // input에 값 입력시 렌더링이 새롭게 되므로 값이 모두 초기화 됨
-        second: second,
-        value: '',
-        result: '땡',
+      setState(prevState => { // prevState: 이전 상태값
+        return {
+          first: prevState.first, // input에 값 입력시 렌더링이 새롭게 되므로 값이 모두 초기화 됨
+          second: prevState.second,
+          value: '',
+          result: '땡',
+        }
       })
+      // setState({
+      //   first: first, // input에 값 입력시 렌더링이 새롭게 되므로 값이 모두 초기화 됨
+      //   second: second,
+      //   value: '',
+      //   result: '땡',
+      // })
     }
   }
 
@@ -49,7 +61,7 @@ function Gugudan() { // 바뀌는 부분을 state로
         <button>입력!</button>
       </form>
       {/*<div>{`${multiply}은 ${result}`}</div>*/}
-      <div>{ result }</div>
+      <div>{result}</div>
     </div>
   )
 }
