@@ -5,6 +5,7 @@ function Gugudan2() {
 
   const nameInput = useRef();
 
+  // setState를 각각 만들면 객체로 state를 만드는 것보다 편리함(따로 setState 가능)
   const [first, setFirst] = useState(Math.ceil(Math.random() * 9));
   const [second, setSecond] = useState(Math.ceil(Math.random() * 9));
   const [value, setValue] = useState('');
@@ -16,6 +17,7 @@ function Gugudan2() {
     setResult('');
   };
 
+  // onSubmit함수에서 setState는 비동기이며, 모아서 한번에 처리하므로 렌더링이 1번만 발생
   const onSubmit = e => {
     e.preventDefault(); // 새로고침 방지
     if (parseInt(value) === first * second) {
@@ -39,7 +41,9 @@ function Gugudan2() {
     // })
   };
 
-  console.log('렌더링'); // setState함수가 실행되면 다시 렌더링이 됨
+  // setState함수가 실행되면 다시 렌더링이 됨
+  // state가 변경되면 Gugudan2 컴포넌트가 재렌더링 됨
+  console.log('렌더링');
 
   return (
     <div>

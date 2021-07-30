@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 function Gugudan() {
   // 바뀌는 부분을 state로
 
+  // 객체로 useState 사용시 setState할 때 모든 state를 넣어주어야 함
   const nameInput = useRef();
   const [state, setState] = useState({
     first: Math.ceil(Math.random() * 9),
